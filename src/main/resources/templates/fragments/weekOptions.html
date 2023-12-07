@@ -1,0 +1,7 @@
+<label for="week">Week:</label>
+<select id="week" name="week">
+    <option value="">Select a Week</option>
+    <th:block th:each="week : ${weeks}">
+        <option th:value="${week}" th:text="${'Week ' + week}"></option>
+    </th:block>
+</select>
