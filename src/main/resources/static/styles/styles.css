@@ -1,9 +1,89 @@
-
-
-h1 {
-    color:blue;
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
 }
 
-.test {
-    color: purple;
+.title {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+    width:100%;
+    margin-top:1rem;
+    margin-bottom:1rem;
+}
+
+.input-panel {
+    display: flex;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 800px; /* Adjust as needed for desktop view */
+}
+
+.input-form {
+    width: 100%;
+}
+
+.input-form > div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.input-form label {
+    margin-bottom: 5px;
+}
+
+.input-form input[type="text"],
+.input-form select {
+    padding: 5px;
+    width: 100%; /* Makes input, select, and textarea elements take the full width of their parent */
+    box-sizing: border-box; /* Includes padding in the width */
+    font-size:1.5rem;
+    height:3rem;
+}
+
+.input-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Example color */
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.input-form button:hover {
+    background-color: #45a049; /* Darker shade for hover effect */
+}
+
+/* Additional styling for aesthetics */
+.input-form select:disabled {
+    background-color: #e7e7e7;
+}
+
+.input-form textarea {
+    padding: 5px;
+    width: 100%;
+    height: 10rem; /* Adjust this value as needed */
+    resize: none; /* Prevents resizing */
+    box-sizing: border-box; /* Includes padding and border in the height and width */
+}
+
+.input-form select {
+    height: 3rem;
+}
+
+.content-panels-wrapper {
+    display:flex;
+    width:90%;
+    margin:auto;
+
+}
+
+.seed-info-panel {
+    display:flex;
+    justify-content: center;
+    background-color: #4CAF50;
+    width:30%;
 }

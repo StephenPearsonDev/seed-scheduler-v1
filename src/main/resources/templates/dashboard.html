@@ -8,57 +8,68 @@
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
 </head>
 <body>
-
-    <h1 class="test">Seed Scheduler Dashboard</h1>
-
-    <div class="input-panel">
-        <form id="seedPackForm" th:action="@{/api/seedpack/add}" th:method="post" hx-post="/api/seedpack/add" hx-target="#response" hx-swap="outerHTML">
-            <div>
-                <label for="month">Month:</label>
-                <select id="month" name="month" hx-get="/api/getWeeks" hx-trigger="change" hx-target="#weekDropdown" hx-includes="month">
-                    <!-- Dynamically populate month options -->
-                    <option value="January">January</option>
-                    <option value="February">February</option>
-                    <option value="March">March</option>
-                    <option value="April">April</option>
-                    <option value="May">May</option>
-                    <option value="June">June</option>
-                    <option value="July">July</option>
-                    <option value="August">August</option>
-                    <option value="September">September</option>
-                    <option value="October">October</option>
-                    <option value="November">November</option>
-                    <option value="December">December</option>
-
-                </select>
-            </div>
-            <div id="weekDropdown">
-                <label for="week">Week:</label>
-                <select id="week" name="week" disabled>
-                    <!-- Dynamically populate week options based on month -->
-                    <option value="">Select Week</option>
-
-                </select>
-            </div>
-            <div>
-                <label for="category">Category:</label>
-                <input type="text" id="category" name="category" placeholder="e.g., Vegetable">
-            </div>
-            <div>
-                <label for="subcategory">Sub Category:</label>
-                <input type="text" id="subcategory" name="subcategory" placeholder="e.g., Tomato">
-            </div>
-            <div>
-                <label for="variety">Seed Variety:</label>
-                <input type="text" id="variety" name="variety" placeholder="e.g., Cherry Tomato">
-            </div>
-            <div>
-                <label for="notes">Sowing Notes:</label>
-                <textarea id="notes" name="notes" placeholder="Any special notes or reminders"></textarea>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="title">
+        <h1 class="test">Seed Scheduler Dashboard</h1>
     </div>
+    
+    <div class="content-panels-wrapper">
+        <div class="input-panel">
+            <form class="input-form" id="seedPackForm" th:action="@{/api/seedpack/add}" th:method="post" hx-post="/api/seedpack/add" hx-target="#response" hx-swap="outerHTML">
+                <div>
+                    <label for="month">Month:</label>
+                    <select id="month" name="month" hx-get="/api/getWeeks" hx-trigger="change" hx-target="#weekDropdown" hx-includes="month">
+                        <!-- Dynamically populate month options -->
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </div>
+                <div id="weekDropdown">
+                    <label for="week">Week:</label>
+                    <select id="week" name="week" disabled>
+                        <!-- Dynamically populate week options based on month -->
+                        <option value="">Select Week</option>
+    
+                    </select>
+                </div>
+                <div>
+                    <label for="category">Category:</label>
+                    <select id="category" name="category">
+                        <option value="vegetable">Vegetable</option>
+                        <option value="flower">Flower</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="subcategory">Sub Category:</label>
+                    <input type="text" id="subcategory" name="subcategory" placeholder="e.g., Tomato">
+                </div>
+                <div>
+                    <label for="variety">Seed Variety:</label>
+                    <input type="text" id="variety" name="variety" placeholder="e.g., Cherry Tomato">
+                </div>
+                <div>
+                    <label for="notes">Sowing Notes:</label>
+                    <textarea id="notes" name="notes" placeholder="Any special notes or reminders"></textarea>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    
+        <div class="seed-info-panel">
+            content-here
+        </div>
+
+    </div>
+    
 
     <div id="response">
         <!-- Response from the server will be displayed here -->
