@@ -6,6 +6,8 @@ import java.time.Month;
 import java.time.YearMonth;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.stereotype.Service;
@@ -65,5 +67,32 @@ public class CalendarService {
 
         return weeks;
     }
+	
+	public List<MonthPart> getMonthParts(String month) {
+	    int currentYear = LocalDate.now().getYear();
+	    int monthNumber = Month.valueOf(month.toUpperCase()).getValue();
+	    YearMonth yearMonth = YearMonth.of(currentYear, monthNumber);
+
+	    List<MonthPart> parts = new ArrayList<>();
+	    int totalDays = yearMonth.lengthOfMonth();
+	    int daysInPart = totalDays / 4;
+	    int extraDays = totalDays % 4;
+
+	    for (int i = 0; i < 4; i++) {
+	        LocalDate partStart = yearMonth.atDay(i * daysInPart + 1);
+	        LocalDate partEnd = (i == 3) ? yearMonth.atEndOfMonth() : yearMonth.atDay((i + 1) * daysInPart);
+
+	        MonthPart part = new MonthPart();
+	        part.setPartNumber(i + 1);
+	        part.setStartDate(partStart);
+	        part.setEndDate(partEnd);
+	        part.setNumberOfDays((i == 3) ? (daysInPart + extraDays) : daysInPart);
+
+	        parts.add(part);
+	    }
+
+	    return parts;
+	}
+
 
 }

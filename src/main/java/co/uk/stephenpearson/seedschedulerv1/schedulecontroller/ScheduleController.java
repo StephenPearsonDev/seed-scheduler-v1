@@ -27,5 +27,15 @@ public class ScheduleController {
 		model.addAttribute("weeks", weeks);
 		return "fragments/weekOptions";
 	}
+	
+	@GetMapping("/api/getMonthParts")
+	public String getMonthparts(@RequestParam String month, Model model) {
+		System.out.println("getting month: " + month);
+		List<MonthPart> monthParts = calendarService.getMonthParts(month);
+		
+		model.addAttribute("monthParts", monthParts);
+		
+		return "fragments/monthParts";
+	}
 
 }

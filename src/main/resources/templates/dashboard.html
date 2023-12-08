@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seed Scheduler Dashboard</title>
-    <script src="https://unpkg.com/htmx.org"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
 </head>
 <body>
@@ -12,12 +12,13 @@
         <h1 class="test">Seed Scheduler Dashboard</h1>
     </div>
     
+
     <div class="content-panels-wrapper">
         <div class="input-panel">
             <form class="input-form" id="seedPackForm" th:action="@{/api/seedpack/add}" th:method="post" hx-post="/api/seedpack/add" hx-target="#response" hx-swap="outerHTML">
                 <div>
                     <label for="month">Month:</label>
-                    <select id="month" name="month" hx-get="/api/getWeeks" hx-trigger="change" hx-target="#weekDropdown" hx-includes="month">
+                    <select id="month" name="month" hx-get="/api/getMonthParts" hx-trigger="change" hx-target="#monthPartDropdown" hx-includes="month">
                         <!-- Dynamically populate month options -->
                         <option value="January">January</option>
                         <option value="February">February</option>
@@ -33,15 +34,13 @@
                         <option value="December">December</option>
                     </select>
                 </div>
-                <div id="weekDropdown">
-                    <label for="week">Week:</label>
-                    <select id="week" name="week" disabled>
-                        <!-- Dynamically populate week options based on month -->
-                        <option value="">Select Week</option>
-    
-                    </select>
+
+                <div id="monthPartDropdown">
+                    <p>Static content for testing</p>
                 </div>
-                <div>
+                
+            
+                <!-- <div>
                     <label for="category">Category:</label>
                     <select id="category" name="category">
                         <option value="vegetable">Vegetable</option>
@@ -60,33 +59,31 @@
                     <label for="notes">Sowing Notes:</label>
                     <textarea id="notes" name="notes" placeholder="Any special notes or reminders"></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <button type="submit">Submit</button> -->
             </form>
         </div>
-    
+<!--     
         <div class="seed-info-panel">
             content-here
-        </div>
+        </div> -->
 
     </div>
+
+
+    <!-- <script>
+        window.addEventListener('load', function() {
+            htmx.trigger("#month", "change");
+        });
+    </script> -->
+<script>
+    document.getElementById('month').addEventListener('change', function(event) {
+    event.preventDefault();
+    // Manually trigger HTMX request if needed
+});
+
+    htmx.config.debug = true;
+</script>
     
-
-    <div id="response">
-        <!-- Response from the server will be displayed here -->
-    </div>
-
-    <!-- The bottom half for displaying data will be added here later -->
-
-
-    <script>
-        // Function to trigger the HTMX request for "All Months" on page load
-        function loadWeeksForAllMonths() {
-            document.querySelector('#month').dispatchEvent(new Event('change'));
-        }
-    
-        // Call the function when the page loads
-        window.addEventListener('load', loadWeeksForAllMonths);
-    </script>
     
 </body>
 </html>

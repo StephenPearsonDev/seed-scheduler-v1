@@ -41,8 +41,8 @@
     padding: 5px;
     width: 100%; /* Makes input, select, and textarea elements take the full width of their parent */
     box-sizing: border-box; /* Includes padding in the width */
-    font-size:1.5rem;
-    height:3rem;
+    font-size:1.2rem;
+    height:2rem;
 }
 
 .input-form button {
