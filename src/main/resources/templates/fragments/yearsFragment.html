@@ -1,0 +1,18 @@
+<!-- yearsFragment.html -->
+
+    <!-- <th:block th:each="year : ${years}">
+        <option th:value="${year}" th:text="${year}"></option>
+    </th:block> -->
+
+   
+
+    <!-- yearsFragment.html -->
+<select id="year" name="year">
+    <th:block th:each="year : ${years}">
+        <option th:value="${year}" th:text="${year}"></option>
+    </th:block>
+</select>
+
+
+
+

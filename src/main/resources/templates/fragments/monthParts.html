@@ -1,8 +1,10 @@
 <!-- fragments/monthParts.html -->
-<label for="monthPart">Month Part:</label>
-<select id="monthPart" name="monthPart">
-    <option value="">Select a Month Part</option>
-    <th:block th:each="part : ${monthParts}">
-        <option th:value="${part.partNumber}" th:text="${'Part ' + part.partNumber + ': ' + part.startDate + ' to ' + part.endDate}"></option>
-    </th:block>
-</select>
+<div id="monthPartDropdown">
+    <select id="monthPart" name="monthPart">
+        <option value="">Select a Month Part</option>
+        <th:block th:each="part : ${monthParts}">
+            <option th:value="${part.partNumber}" th:text="${'Part ' + part.partNumber + ': ' + part.startDate + ' to ' + part.endDate}"></option>
+        </th:block>
+    </select>
+</div>
+

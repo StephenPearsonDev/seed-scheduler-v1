@@ -6,6 +6,7 @@
     <title>Seed Scheduler Dashboard</title>
     <script src="https://unpkg.com/htmx.org@1.9.9"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/styles.css}">
+   
 </head>
 <body>
     <div class="title">
@@ -16,10 +17,18 @@
     <div class="content-panels-wrapper">
         <div class="input-panel">
             <form class="input-form" id="seedPackForm" th:action="@{/api/seedpack/add}" th:method="post" hx-post="/api/seedpack/add" hx-target="#response" hx-swap="outerHTML">
+                 <div>
+                    <label for="year">Year:</label>
+                    <select id="year" name="year" hx-get="/api/getYears" hx-trigger="load" hx-target="#year">
+                     <option name="">Select a year</option>
+                    </select>
+                 </div>
+                
+
+                
                 <div>
                     <label for="month">Month:</label>
-                    <select id="month" name="month" hx-get="/api/getMonthParts" hx-trigger="change" hx-target="#monthPartDropdown" hx-includes="month">
-                        <!-- Dynamically populate month options -->
+                    <select id="month" name="month" hx-get="/api/getMonthParts" hx-trigger="change, load-data" hx-target="#monthPartDropdown" hx-includes="month">
                         <option value="January">January</option>
                         <option value="February">February</option>
                         <option value="March">March</option>
@@ -35,55 +44,26 @@
                     </select>
                 </div>
 
+                <label for="monthPart">Week in month:</label>
                 <div id="monthPartDropdown">
-                    <p>Static content for testing</p>
                 </div>
                 
             
-                <!-- <div>
-                    <label for="category">Category:</label>
-                    <select id="category" name="category">
-                        <option value="vegetable">Vegetable</option>
-                        <option value="flower">Flower</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="subcategory">Sub Category:</label>
-                    <input type="text" id="subcategory" name="subcategory" placeholder="e.g., Tomato">
-                </div>
-                <div>
-                    <label for="variety">Seed Variety:</label>
-                    <input type="text" id="variety" name="variety" placeholder="e.g., Cherry Tomato">
-                </div>
-                <div>
-                    <label for="notes">Sowing Notes:</label>
-                    <textarea id="notes" name="notes" placeholder="Any special notes or reminders"></textarea>
-                </div>
-                <button type="submit">Submit</button> -->
             </form>
         </div>
-<!--     
-        <div class="seed-info-panel">
-            content-here
-        </div> -->
-
     </div>
-
-
-    <!-- <script>
-        window.addEventListener('load', function() {
-            htmx.trigger("#month", "change");
-        });
-    </script> -->
 <script>
-    document.getElementById('month').addEventListener('change', function(event) {
-    event.preventDefault();
-    // Manually trigger HTMX request if needed
-});
-
     htmx.config.debug = true;
+    
 </script>
-    
-    
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var loadEvent = new Event('load-data');
+        document.getElementById('month').dispatchEvent(loadEvent);
+    });
+</script>
+
+
+
 </body>
 </html>
