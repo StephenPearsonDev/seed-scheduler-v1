@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seed Scheduler Dashboard</title>
+    <script src="https://unpkg.com/htmx.org@1.9.9"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/schedulerStyles.css}">
+   
+</head>
+<body>
+    
+
+    <div class="nav-wrapper">
+        
+    </div>
+    
+    <div class="panel-wrapper">
+
+        <div class="top-panel">
+            
+
+            <form th:action="@{/submit-seed-scheduler}" method="post" hx-get="/type" hx-target="#typeDropdown">
+                
+
+                <input class="form-control" type="search" id="varietyInput"
+                name="query" placeholder="Begin Typing To Search Varieties..." 
+                hx-get="/api/varieties" 
+                hx-trigger="input changed delay:500ms" 
+                hx-target="#search-results">
+
+                <div id="search-results"></div>
+                
+               
+               
+            </form>
+        
+    
+            <div class="seed-waiting-panel">
+                <div class="seed-waiting-header">
+                    <h2>Seeds Waiting</h2>
+                </div>
+                <div class="seed-waiting-body">
+                    <div class="seed-waiting-item">
+                        <div class="seed-waiting-item-header">
+                            <h3>Seed Name</h3>
+                        </div>
+                        <div class="seed-waiting-item-body">
+                            <p>Seed Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+        <div class="bottom-panel">
+            <div class="bottom-panel-header">
+                <h2>Seeds</h2>
+            </div>
+            <div class="bottom-panel-body">
+                <div class="bottom-panel-item">
+                    <div class="bottom-panel-item-header">
+                        <h3>Seed Name</h3>
+                    </div>
+                    <div class="bottom-panel-item-body">
+                        <p>Seed Description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="seed-scheduled-panel">
+                <div class="seed-scheduled-header">
+                    <h2>Seeds Scheduled</h2>
+                </div>
+                <div class="seed-scheduled-body">
+                    <div class="seed-scheduled-item">
+                        <div class="seed-scheduled-item-header">
+                            <h3>Seed Name</h3>
+                        </div>
+                        <div class="seed-scheduled-item-body">
+                            <p>Seed Description</p>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
+        
+
+        
+
+<script>
+    htmx.config.debug = true;
+    
+</script>
+
+ 
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const inputField = document.getElementById('varietyInput');
+    inputField.addEventListener('input', function() {
+        const query = this.value;
+        if (query.length >= 2) {
+            fetch(`/api/varieties?query=${query}`)
+                .then(response => response.text())
+                .then(data => {
+                    if (data) {
+                        this.placeholder = data;
+                        this.style.background = '#fff'; // Remove background if there's text
+                    }
+                });
+        }
+    });
+
+    inputField.addEventListener('keyup', function(event) {
+        if (event.key === 'Enter' || event.key === 'Tab') {
+            event.preventDefault();
+            this.value = this.placeholder;
+            this.placeholder = '';
+            this.style.background = 'none';
+        }
+    });
+});
+
+
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

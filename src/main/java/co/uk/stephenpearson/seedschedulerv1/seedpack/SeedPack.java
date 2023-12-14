@@ -1,5 +1,7 @@
 package co.uk.stephenpearson.seedschedulerv1.seedpack;
 
+import java.time.LocalDate;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +16,6 @@ public class SeedPack {
     private String subcategory;
     private String variety;
     private String notes;
+    private int sowingDay;
+    
 }
